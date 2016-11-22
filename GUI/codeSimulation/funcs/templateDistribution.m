@@ -207,7 +207,10 @@ elseif strcmp(genType, 'user defined')
         
         pattern = imread(path);
         L=size(pattern,1);K=size(pattern,2);
-        
+        if(size(pattern,3)>1 && length(size(pattern))<4)        
+            pattern = pattern(:,:,1);
+            display('The image is not two-dimensional after import in Matlab. Warning: data was cropped to 2D.');
+        end
         if(size(pattern,3)==1) % check the data isn't three dimensional
             if L>K
                 pattern(1:L-K,:)=[];
@@ -245,6 +248,10 @@ elseif strcmp(genType, 'user defined')
             pos_to_remove = (x<=1 | x>=K | y<=1 | y>=L);
             x(pos_to_remove)=[];
             y(pos_to_remove)=[];
+            if sum(pos_to_remove)
+                nPulses = nPulses-sum(pos_to_remove);
+                dPulses = nPulses/(length(indx)*pixel_area); % in [um^2]
+            end
             sizePattern = L;clear pos pos_to_remove;
             % figure,scatter(x,y);
         else
