@@ -25,7 +25,7 @@ Step 2: Execute the following command on the "Command Window":
 >> SOFItutorial_startMenu 
 
 
-////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 Using GPU algorithms
 
  - Algorithms available for the Simulator are '2D SOFI', 'STORM', 'FALCON STORM GPU' and '2D SOFI GPU'. 
